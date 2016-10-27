@@ -81,6 +81,12 @@ Element.prototype.appendChild = function appendChild( elem ) {
 			}).then(function (resp_text) {
 				var found = resp_text.match(/(function pLPCommand[\S\s]+function pRTLPCB[^\}]+\})/);
 				if (found) {
+					// XXX: This is how it is done in database-node
+					// function Ye(a, b) { eval("var jsonpCB = function(pLPCommand, pRTLPCB) {" + b + "}");
+					//     jsonpCB(a.Nf, a.gg) };
+					// XXX: Can probably run jsonpCB(window["pLPCommand1"], window["pRTLPCB1"]); instead of this:
+
+
 					this._eval_header = 'var parent = { window: window }; ' + found[1];
 					resp_text = 'var parent = { window: window }; ' + resp_text;
 				}
