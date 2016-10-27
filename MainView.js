@@ -4,8 +4,6 @@ if (typeof firebase === "undefined") {
   firebase = require('fuse-firebase');
   // Initialize Firebase
   var config = require('firebase-config');
-  console.log("Enabled logging");
-  firebase.database.enableLogging(true);
   firebase.initializeApp(config);
 }
 
@@ -55,6 +53,15 @@ function signedIn() {
 	currentPage.value = {title: "Logged In Page", handle: "loggedInPage"};
     updateUserDetailsUI();
     getMessages();
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+    var imageRef = storageRef.child('cabins/my_image.txt');
+    imageRef.putString("Yeah yeah were the monkeys", 'raw').then(function (snapshot) {
+        console.log("Uploaded raw fuse string!");
+    }).catch( function (err) {
+      console.log("Error " + err);
+      console.log(JSON.stringify(err));
+    });
 }
 
 function signedOut() {

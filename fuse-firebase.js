@@ -2,6 +2,14 @@ var firebase = {};
 process = {};
 var Observable = require('FuseJS/Observable');
 
+XMLHttpRequest.prototype.old_send = XMLHttpRequest.prototype.send;
+XMLHttpRequest.prototype.send = function (data) {
+	if (data && data.constructor && data.constructor.name === "Uint8Array") {
+		data = String.fromCharCode.apply(null, data);
+	}
+	this.old_send(data);
+}
+
 window.navigator = this.navigator = {
     userAgent : "Fuse"
 };
@@ -12,7 +20,6 @@ function Location (name) {
 	this.protocol = "https:";
 	Object.defineProperty(this, 'href', {
 	  get: function() { 
-	  	console.log(name+ " href getter");
 	  	return 'https://app.fuse/';
 	  },
 	  set: function(newValue) { console.log(name+" href setter " + newValue); },
