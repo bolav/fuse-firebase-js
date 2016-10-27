@@ -8,6 +8,7 @@
   "Includes": [
     "*",
     "fuse-firebase.js:Bundle",
+    "firebase-config.js:Bundle",
     "node_modules/firebase/app-node.js:Bundle",
     "node_modules/firebase/app.js:Bundle",
     "node_modules/firebase/auth.js:Bundle",
