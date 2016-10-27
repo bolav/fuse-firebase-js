@@ -1,2 +1,53 @@
-<App>
+<App Background="#2586EC">
+	<JavaScript File="MainView.js" />
+	<DockPanel>
+		<StackPanel Dock="Top" Background="#2586EC">
+			<StatusBarBackground/>
+			<Fuse.iOS.StatusBarConfig Style="Light"/>
+		</StackPanel>
+		<BottomBarBackground Dock="Bottom" />
+
+		<DirectNavigation Active="{currentPageHandle}"/>
+
+		<Page Name="lobbyPage">
+				<StackPanel Width="92%" Height="460" Padding="20">
+					<Rectangle Layer="Background" CornerRadius="10" Color="#fff"/>
+					<Text Value="{currentPageTitle}" Alignment="Center" FontSize="35" TextColor="#2586EC"/>
+                    <Text Value="{lobbyStatusText}" Alignment="Center" Margin="0,0,0,20"/>
+					<Basic.TextInput Width="100%" Value="{userEmailInput}" ux:Name="userName" Alignment="Center" PlaceholderText="Email Address" PlaceholderColor="#bbb" />
+					<Basic.TextInput Width="100%" Value="{userPasswordInput}" IsPassword="true" Alignment="Center" PlaceholderText="Password" PlaceholderColor="#bbb" />
+					
+					<Basic.Button Text="Sign In With Email" Clicked="{signInWithEmail}" />
+					<Basic.Button Text="Sign In Google" Clicked="{signInWithGoogle}" />
+					<Basic.Button Text="Create User With Email" Clicked="{createUser}" />
+				</StackPanel>
+
+			<ExitingAnimation>
+				<Move X="-1" RelativeTo="Size"
+					  Duration="0.3" Easing="CircularInOut"/>
+			</ExitingAnimation>
+		</Page>
+
+		<Page Name="loggedInPage">
+				<StackPanel Width="92%" Height="360" Padding="20">
+
+					<Rectangle Layer="Background" CornerRadius="10" Color="#fff"/>
+					<Text Value="{currentPageTitle}" Alignment="Center" FontSize="35" TextColor="#2586EC"/>
+					<Text Value="Friendly Chat" />
+					<StackPanel>
+					</StackPanel>
+					<TextInput PlaceholderText="Message..." Value="{message}" />
+					<Button Text="SEND" Clicked="{send_clicked}" />
+
+                    <Basic.Button Text="ReAuthenticate" Clicked="{reauthenticate}"/>
+                    <Basic.Button Text="Sign Out" Clicked="{signOutNow}" />
+				</StackPanel>
+
+			<ExitingAnimation>
+				<Move X="1" RelativeTo="Size"
+					  Duration="0.3" Easing="CircularInOut"/>
+			</ExitingAnimation>
+		</Page>
+
+	</DockPanel>
 </App>

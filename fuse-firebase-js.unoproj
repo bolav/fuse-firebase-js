@@ -2,9 +2,20 @@
   "RootNamespace":"",
   "Packages": [
   	"Fuse",
-  	"FuseJS"
+  	"FuseJS",
+    "Fuse.BasicTheme"
   ],
   "Includes": [
-    "*"
+    "*",
+    "fuse-firebase.js:Bundle",
+    "node_modules/firebase/app-node.js:Bundle",
+    "node_modules/firebase/app.js:Bundle",
+    "node_modules/firebase/auth.js:Bundle",
+    "node_modules/firebase/storage.js:Bundle",
+    "node_modules/firebase/database.js:Bundle",
+    "node_modules/firebase/database-node.js:Bundle",
+    "request.js:Bundle",
+    "main.js:Bundle",
+    "faye-websocket.js:Bundle",
   ]
 }
