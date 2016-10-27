@@ -1,5 +1,4 @@
 var Observable = require("FuseJS/Observable");
-var fchat = require('main.js');
 
 if (typeof firebase === "undefined") {
   firebase = require('fuse-firebase');
@@ -46,14 +45,10 @@ function signedOut() {
 //---
 
 var updateUserDetailsUI = function() {
-    console.log('updateUserDetailsUI');
-    console.log(firebase.auth().currentUser);
-    console.log(JSON.stringify(firebase.auth().currentUser));
-    if (FirebaseUser.isSignedIn) {
-        console.log(firebase.auth.currentUser);
-        userName.value = firebase.auth.currentUser.name;
-        userEmail.value = firebase.auth.currentUser.email;
-        userPhotoUrl.value = firebase.auth.currentUser.photoUrl;
+    if (firebase.auth().currentUser) {
+        userName.value = firebase.auth().currentUser.name;
+        userEmail.value = firebase.auth().currentUser.email;
+        userPhotoUrl.value = firebase.auth().currentUser.photoUrl;
     } else {
         userName.value = "-";
         userEmail.value = "-";

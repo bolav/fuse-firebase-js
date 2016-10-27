@@ -16,7 +16,6 @@
     "node_modules/firebase/database.js:Bundle",
     "node_modules/firebase/database-node.js:Bundle",
     "request.js:Bundle",
-    "main.js:Bundle",
     "faye-websocket.js:Bundle",
   ]
 }
