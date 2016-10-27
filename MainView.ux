@@ -38,6 +38,11 @@
                     <Text Value="{userEmail}" Margin="0,5"/>
                     <Text Value="{userPhotoUrl}" Margin="0,5"/>
                     <Text Value="{signedInStatusText}" Alignment="Center" FontSize="10" TextColor="#222" Margin="0,0,0,20"/>
+                    <StackPanel>
+                    	<Each Items="{messages}">
+                    		<Text Value="{text}" />
+                    	</Each>
+                    </StackPanel>
 
                     <Basic.Button Text="ReAuthenticate" Clicked="{reauthenticate}"/>
                     <Basic.Button Text="Sign Out" Clicked="{signOutNow}" />

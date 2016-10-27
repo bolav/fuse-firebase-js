@@ -31,15 +31,36 @@ var currentPageTitle = currentPage.map(function(x) {
 	return x.title;
 });
 
+var messages = Observable();
+
+function saveMessage(data) {
+  var val = data.val();
+  messages.add(val);
+  // this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
+}
+
+function getMessages() {
+    console.log("getMessages")
+    var messagesRef = firebase.database().ref('messages');
+    console.log("messagesRef: " + messagesRef);
+    messagesRef.off();
+    console.log("Adding subscribers");
+    messagesRef.limitToLast(12).on('child_added', saveMessage);
+    messagesRef.limitToLast(12).on('child_changed', saveMessage);
+    console.log("getMessages done");
+}
+
 function signedIn() {
     signedInStatusText.value = defaultStatusMessage;
 	currentPage.value = {title: "Logged In Page", handle: "loggedInPage"};
     updateUserDetailsUI();
+    getMessages();
 }
 
 function signedOut() {
 	currentPage.value = mainPage;
     updateUserDetailsUI();
+    messages.clear();
 }
 
 //---
@@ -130,5 +151,6 @@ module.exports = {
     userEmail: userEmail,
     userPhotoUrl: userPhotoUrl,
     reauthenticate: reauthenticate,
-    signOutNow: signOutNow
+    signOutNow: signOutNow,
+    messages: messages
 };
