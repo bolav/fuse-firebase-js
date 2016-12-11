@@ -107,7 +107,7 @@ var userPasswordInput = Observable("");
 var createUser = function() {
  	var email = userEmailInput.value;
  	var password = userPasswordInput.value;
-    firebase.auth().createWithEmailAndPassword(email, password).then(function(user) {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
         signedIn();
     }).catch(function(e) {
         console.log("Signup failed: " + e);
