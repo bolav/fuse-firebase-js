@@ -4,6 +4,7 @@ if (typeof firebase === "undefined") {
   firebase = require('fuse-firebase');
   // Initialize Firebase
   var config = require('firebase-config');
+  // firebase.database.enableLogging(true);
   firebase.initializeApp(config);
 }
 
